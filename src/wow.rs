@@ -1,10 +1,12 @@
+pub mod character_media;
 pub mod character_profile;
+pub mod character_statistics;
 
 use crate::battle_net::oauth_token::OAuthToken;
+use crate::wow::character_media::CharacterMedia;
 use crate::wow::character_profile::CharacterProfile;
+use crate::wow::character_statistics::CharacterStatistics;
 use crate::Settings;
-use crate::BLIZZARD_SERVER;
-use reqwest::Client;
 
 #[derive(Debug)]
 pub struct WowApi {}
@@ -12,7 +14,7 @@ pub struct WowApi {}
 impl WowApi {
     #[tokio::main]
     pub async fn character_profile(
-        token: OAuthToken,
+        token: &OAuthToken,
         server: &String,
         name: &String,
         settings: &Settings,
@@ -28,32 +30,57 @@ impl WowApi {
         );
 
         let parsed_url = reqwest::Url::parse(&url)?;
-
         let resp = reqwest::get(parsed_url.as_ref()).await?.json().await?;
-        println!("THE RESPONSE : {:?}", resp);
+        Ok(resp)
+    }
+
+    #[tokio::main]
+    pub async fn character_media(
+        token: &OAuthToken,
+        server: &String,
+        name: &String,
+        settings: &Settings,
+    ) -> Result<CharacterMedia, Box<dyn std::error::Error>> {
+        let url = format!(
+            "{}/profile/wow/character/{}/{}/character-media?namespace={}&locale={}&access_token={}",
+            WowApi::get_base_server_url(&settings.region),
+            server,
+            name,
+            settings.namespace,
+            settings.locale,
+            token.access_token
+        );
+
+        let parsed_url = reqwest::Url::parse(&url)?;
+        let resp = reqwest::get(parsed_url.as_ref()).await?.json().await?;
+
         Ok(resp)
     }
 
     #[tokio::main]
     pub async fn character_statistics(
-        token: OAuthToken,
+        token: &OAuthToken,
         server: &String,
         name: &String,
         settings: &Settings,
-    ) {
-        let endpoint = "/oauth/token";
-    }
+    ) -> Result<CharacterStatistics, Box<dyn std::error::Error>> {
+        let url = format!(
+            "{}/profile/wow/character/{}/{}/statistics?namespace={}&locale={}&access_token={}",
+            WowApi::get_base_server_url(&settings.region),
+            server,
+            name,
+            settings.namespace,
+            settings.locale,
+            token.access_token
+        );
 
-    #[tokio::main]
-    pub async fn account_summary(token: OAuthToken, settings: &Settings) {
-        let endpoint = "/profile/user/wow";
+        let parsed_url = reqwest::Url::parse(&url)?;
+        let resp = reqwest::get(parsed_url.as_ref()).await?.json().await?;
+
+        Ok(resp)
     }
 
     fn get_base_server_url(region: &String) -> String {
         format!("https://{}.api.blizzard.com", region)
-    }
-
-    fn parse_url(url: &String) {
-        println!("{:?}", reqwest::Url::parse(url));
     }
 }

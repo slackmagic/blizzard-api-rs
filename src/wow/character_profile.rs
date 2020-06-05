@@ -7,6 +7,7 @@ pub struct CharacterProfile {
     race: Race,
     realm: Realm,
     guild: Guild,
+    active_title: Title,
     level: usize,
     experience: usize,
     achievement_points: usize,
@@ -22,6 +23,8 @@ pub struct ActiveSpec {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Faction {
+    #[serde(alias = "type")]
+    type_faction: String,
     name: String,
 }
 
@@ -48,4 +51,11 @@ pub struct Realm {
 pub struct Guild {
     id: usize,
     name: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Title {
+    id: usize,
+    name: String,
+    display_string: String,
 }

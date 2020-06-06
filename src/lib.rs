@@ -41,7 +41,11 @@ impl BlizzardApiRS {
         }
     }
 
-    pub fn get_token(&mut self, client: &String, secret: &String) -> Result<OAuthToken, String> {
+    pub async fn get_token(
+        &mut self,
+        client: &String,
+        secret: &String,
+    ) -> Result<OAuthToken, String> {
         match BattleNetApi::get_token(client, secret, &self.settings) {
             Ok(token) => Ok(token),
             Err(msg) => Err(msg.to_string()),

@@ -52,18 +52,7 @@ impl BlizzardApiRS {
         }
     }
 
-    pub fn get_token_blocking(
-        &mut self,
-        client: &String,
-        secret: &String,
-    ) -> Result<OAuthToken, String> {
-        match BattleNetApi::get_token(client, secret, &self.settings) {
-            Ok(token) => Ok(token),
-            Err(msg) => Err(msg.to_string()),
-        }
-    }
-
-    pub fn get_wow_character_profile(
+    pub async fn get_wow_character_profile(
         &self,
         token: &OAuthToken,
         server: String,
@@ -75,7 +64,7 @@ impl BlizzardApiRS {
         }
     }
 
-    pub fn get_wow_character_media(
+    pub async fn get_wow_character_media(
         &self,
         token: &OAuthToken,
         server: String,
@@ -87,7 +76,7 @@ impl BlizzardApiRS {
         }
     }
 
-    pub fn get_wow_character_statistics(
+    pub async fn get_wow_character_statistics(
         &self,
         token: &OAuthToken,
         server: String,

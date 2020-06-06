@@ -55,10 +55,10 @@ impl BlizzardApiRS {
     pub async fn get_wow_character_profile(
         &self,
         token: &OAuthToken,
-        server: String,
-        name: String,
+        server: &String,
+        name: &String,
     ) -> Result<CharacterProfile, String> {
-        match WowApi::character_profile(token, &server, &name, &self.settings) {
+        match WowApi::character_profile(token, server, name, &self.settings) {
             Ok(resp) => Ok(resp),
             Err(msg) => Err(msg.to_string()),
         }
@@ -67,10 +67,10 @@ impl BlizzardApiRS {
     pub async fn get_wow_character_media(
         &self,
         token: &OAuthToken,
-        server: String,
-        name: String,
+        server: &String,
+        name: &String,
     ) -> Result<CharacterMedia, String> {
-        match WowApi::character_media(token, &server, &name, &self.settings) {
+        match WowApi::character_media(token, server, name, &self.settings) {
             Ok(resp) => Ok(resp),
             Err(msg) => Err(msg.to_string()),
         }
@@ -79,10 +79,10 @@ impl BlizzardApiRS {
     pub async fn get_wow_character_statistics(
         &self,
         token: &OAuthToken,
-        server: String,
-        name: String,
+        server: &String,
+        name: &String,
     ) -> Result<CharacterStatistics, String> {
-        match WowApi::character_statistics(token, &server, &name, &self.settings) {
+        match WowApi::character_statistics(token, server, name, &self.settings) {
             Ok(resp) => Ok(resp),
             Err(msg) => Err(msg.to_string()),
         }

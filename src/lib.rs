@@ -46,7 +46,7 @@ impl BlizzardApiRS {
         client: &String,
         secret: &String,
     ) -> Result<OAuthToken, String> {
-        match BattleNetApi::get_token(client, secret, &self.settings) {
+        match BattleNetApi::get_token(client, secret, &self.settings).await {
             Ok(token) => Ok(token),
             Err(msg) => Err(msg.to_string()),
         }
@@ -58,7 +58,7 @@ impl BlizzardApiRS {
         server: &String,
         name: &String,
     ) -> Result<CharacterProfile, String> {
-        match WowApi::character_profile(token, server, name, &self.settings) {
+        match WowApi::character_profile(token, server, name, &self.settings).await {
             Ok(resp) => Ok(resp),
             Err(msg) => Err(msg.to_string()),
         }
@@ -70,7 +70,7 @@ impl BlizzardApiRS {
         server: &String,
         name: &String,
     ) -> Result<CharacterMedia, String> {
-        match WowApi::character_media(token, server, name, &self.settings) {
+        match WowApi::character_media(token, server, name, &self.settings).await {
             Ok(resp) => Ok(resp),
             Err(msg) => Err(msg.to_string()),
         }
@@ -82,7 +82,7 @@ impl BlizzardApiRS {
         server: &String,
         name: &String,
     ) -> Result<CharacterStatistics, String> {
-        match WowApi::character_statistics(token, server, name, &self.settings) {
+        match WowApi::character_statistics(token, server, name, &self.settings).await {
             Ok(resp) => Ok(resp),
             Err(msg) => Err(msg.to_string()),
         }

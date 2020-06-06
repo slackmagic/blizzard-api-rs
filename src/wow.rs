@@ -12,7 +12,6 @@ use crate::Settings;
 pub struct WowApi {}
 
 impl WowApi {
-    #[tokio::main]
     pub async fn character_profile(
         token: &OAuthToken,
         server: &String,
@@ -34,7 +33,6 @@ impl WowApi {
         Ok(resp)
     }
 
-    #[tokio::main]
     pub async fn character_media(
         token: &OAuthToken,
         server: &String,
@@ -57,7 +55,6 @@ impl WowApi {
         Ok(resp)
     }
 
-    #[tokio::main]
     pub async fn character_statistics(
         token: &OAuthToken,
         server: &String,

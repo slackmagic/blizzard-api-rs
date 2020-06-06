@@ -7,7 +7,6 @@ use reqwest::Client;
 pub struct BattleNetApi {}
 
 impl BattleNetApi {
-    #[tokio::main]
     pub async fn get_token(
         client: &String,
         secret: &String,
@@ -20,19 +19,21 @@ impl BattleNetApi {
             endpoint.to_owned()
         );
 
+        println!("Executing reqwest asychronously!");
         println!("{}", url);
 
         let req_client: Client = Client::new();
 
-        //Request
-        let token: OAuthToken = req_client
+        let response = req_client
             .post(&url)
             .basic_auth(client, Some(secret))
             .form(&[("grant_type", "client_credentials")])
             .send()
-            .await?
-            .json()
             .await?;
+        println!("Reqwest executed!");
+
+        let token: OAuthToken = response.json().await?;
+        println!("Token read!");
 
         Ok(token)
     }

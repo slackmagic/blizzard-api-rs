@@ -48,6 +48,17 @@ impl BlizzardApiRS {
         }
     }
 
+    pub fn get_token_blocking(
+        &mut self,
+        client: &String,
+        secret: &String,
+    ) -> Result<OAuthToken, String> {
+        match BattleNetApi::get_token(client, secret, &self.settings) {
+            Ok(token) => Ok(token),
+            Err(msg) => Err(msg.to_string()),
+        }
+    }
+
     pub fn get_wow_character_profile(
         &self,
         token: &OAuthToken,

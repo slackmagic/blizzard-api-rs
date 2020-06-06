@@ -2,6 +2,7 @@
 pub struct CharacterProfile {
     id: usize,
     name: String,
+    character_class: CharacterClass,
     faction: Faction,
     active_spec: ActiveSpec,
     race: Race,

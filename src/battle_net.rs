@@ -19,21 +19,14 @@ impl BattleNetApi {
             endpoint.to_owned()
         );
 
-        println!("Executing reqwest asychronously!");
-        println!("{}", url);
-
-        let req_client: Client = Client::new();
-
-        let response = req_client
+        let token: OAuthToken = Client::new()
             .post(&url)
             .basic_auth(client, Some(secret))
             .form(&[("grant_type", "client_credentials")])
             .send()
+            .await?
+            .json()
             .await?;
-        println!("Reqwest executed!");
-
-        let token: OAuthToken = response.json().await?;
-        println!("Token read!");
 
         Ok(token)
     }

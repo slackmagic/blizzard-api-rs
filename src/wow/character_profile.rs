@@ -1,6 +1,6 @@
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CharacterProfile {
-    id: usize,
+    id: u64,
     name: String,
     character_class: CharacterClass,
     faction: Faction,
@@ -9,12 +9,12 @@ pub struct CharacterProfile {
     realm: Realm,
     guild: Guild,
     active_title: Title,
-    level: usize,
-    experience: usize,
-    achievement_points: usize,
-    average_item_level: usize,
-    equipped_item_level: usize,
-    last_login_timestamp: usize,
+    level: u64,
+    experience: u64,
+    achievement_points: u64,
+    average_item_level: u64,
+    equipped_item_level: u64,
+    last_login_timestamp: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -31,32 +31,32 @@ pub struct Faction {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CharacterClass {
-    id: usize,
+    id: u64,
     name: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Race {
-    id: usize,
+    id: u64,
     name: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Realm {
-    id: usize,
+    id: u64,
     name: String,
     slug: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Guild {
-    id: usize,
+    id: u64,
     name: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Title {
-    id: usize,
+    id: u64,
     name: String,
     display_string: String,
 }

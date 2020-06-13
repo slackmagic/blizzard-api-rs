@@ -1,7 +1,7 @@
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CharacterStatistics {
-    health: usize,
-    power: usize,
+    health: u64,
+    power: u64,
     agility: Agility,
     intellect: Intellect,
     stamina: Stamina,
@@ -20,11 +20,11 @@ pub struct CharacterStatistics {
     parry: Parry,
     block: Block,
     avoidance: Avoidance,
-    bonus_armor: usize,
+    bonus_armor: u64,
     versatility_damage_done_bonus: f64,
     versatility_healing_done_bonus: f64,
     versatility_damage_taken_bonus: f64,
-    attack_power: usize,
+    attack_power: u64,
     main_hand_damage_min: f64,
     main_hand_damage_max: f64,
     main_hand_speed: f64,
@@ -33,8 +33,8 @@ pub struct CharacterStatistics {
     off_hand_damage_max: f64,
     off_hand_speed: f64,
     off_hand_dps: f64,
-    spell_power: usize,
-    spell_penetration: usize,
+    spell_power: u64,
+    spell_penetration: u64,
     mana_regen: f64,
     mana_regen_combat: f64,
     corruption: Option<Corruption>,
@@ -42,120 +42,120 @@ pub struct CharacterStatistics {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Agility {
-    base: usize,
-    effective: usize,
+    base: u64,
+    effective: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Strength {
-    base: usize,
-    effective: usize,
+    base: u64,
+    effective: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Intellect {
-    base: usize,
-    effective: usize,
+    base: u64,
+    effective: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Stamina {
-    base: usize,
-    effective: usize,
+    base: u64,
+    effective: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Armor {
-    base: usize,
-    effective: usize,
+    base: u64,
+    effective: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Speed {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MeleeCrit {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MeleeHaste {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Mastery {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Lifesteal {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SpellCrit {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SpellHaste {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RangedCrit {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RangedHaste {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Dodge {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Parry {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Block {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
     value: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Avoidance {
-    rating: usize,
+    rating: u64,
     rating_bonus: f64,
 }
 

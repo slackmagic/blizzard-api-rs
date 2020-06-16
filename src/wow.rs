@@ -74,12 +74,9 @@ impl WowApi {
         );
 
         let parsed_url = reqwest::Url::parse(&url)?;
-        let resp = reqwest::get(parsed_url.as_ref()).await?;
-        println!("{:?}", resp);
-        let resp_json = resp.json().await?;
-        println!("{:?}", resp_json);
+        let resp = reqwest::get(parsed_url.as_ref()).await?.json().await?;
 
-        Ok(resp_json)
+        Ok(resp)
     }
 
     pub async fn character_equipment(
@@ -99,11 +96,9 @@ impl WowApi {
         );
 
         let parsed_url = reqwest::Url::parse(&url)?;
-        let resp = reqwest::get(parsed_url.as_ref()).await?;
-        println!("{:?}", resp);
-        let resp_json = resp.json().await?;
-        println!("{:?}", resp_json);
-        Ok(resp_json)
+        let resp = reqwest::get(parsed_url.as_ref()).await?.json().await?;
+
+        Ok(resp)
     }
 
     fn get_base_server_url(region: &String) -> String {

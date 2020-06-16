@@ -99,7 +99,7 @@ impl WowApi {
         let resp = reqwest::get(parsed_url.as_ref()).await?;
         println!("{:?}", resp);
         let resp_json = resp.json().await?;
-
+        println!("{:?}", resp_json);
         Ok(resp_json)
     }
 

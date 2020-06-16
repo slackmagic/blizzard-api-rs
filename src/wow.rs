@@ -96,9 +96,11 @@ impl WowApi {
         );
 
         let parsed_url = reqwest::Url::parse(&url)?;
-        let resp = reqwest::get(parsed_url.as_ref()).await?.json().await?;
+        let resp = reqwest::get(parsed_url.as_ref()).await?;
+        println!("{:?}", resp);
+        let resp_json = resp.json().await?;
 
-        Ok(resp)
+        Ok(resp_json)
     }
 
     fn get_base_server_url(region: &String) -> String {

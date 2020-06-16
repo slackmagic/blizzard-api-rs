@@ -1,8 +1,10 @@
+pub mod character_equipment;
 pub mod character_media;
 pub mod character_profile;
 pub mod character_statistics;
 
 use crate::battle_net::oauth_token::OAuthToken;
+use crate::wow::character_equipment::CharacterEquipment;
 use crate::wow::character_media::CharacterMedia;
 use crate::wow::character_profile::CharacterProfile;
 use crate::wow::character_statistics::CharacterStatistics;
@@ -63,6 +65,28 @@ impl WowApi {
     ) -> Result<CharacterStatistics, Box<dyn std::error::Error>> {
         let url = format!(
             "{}/profile/wow/character/{}/{}/statistics?namespace={}&locale={}&access_token={}",
+            WowApi::get_base_server_url(&settings.region),
+            server,
+            name,
+            settings.namespace,
+            settings.locale,
+            token.access_token
+        );
+
+        let parsed_url = reqwest::Url::parse(&url)?;
+        let resp = reqwest::get(parsed_url.as_ref()).await?.json().await?;
+
+        Ok(resp)
+    }
+
+    pub async fn character_equipment(
+        token: &OAuthToken,
+        server: &String,
+        name: &String,
+        settings: &Settings,
+    ) -> Result<CharacterEquipment, Box<dyn std::error::Error>> {
+        let url = format!(
+            "{}/profile/wow/character/{}/{}/equipment?namespace={}&locale={}&access_token={}",
             WowApi::get_base_server_url(&settings.region),
             server,
             name,

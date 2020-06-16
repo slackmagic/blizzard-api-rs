@@ -7,6 +7,7 @@ pub mod wow;
 
 use crate::battle_net::oauth_token::OAuthToken;
 use crate::battle_net::BattleNetApi;
+use crate::wow::character_equipment::CharacterEquipment;
 use crate::wow::character_media::CharacterMedia;
 use crate::wow::character_profile::CharacterProfile;
 use crate::wow::character_statistics::CharacterStatistics;
@@ -83,6 +84,18 @@ impl BlizzardApiRS {
         name: &String,
     ) -> Result<CharacterStatistics, String> {
         match WowApi::character_statistics(token, server, name, &self.settings).await {
+            Ok(resp) => Ok(resp),
+            Err(msg) => Err(msg.to_string()),
+        }
+    }
+
+    pub async fn get_wow_character_equipment(
+        &self,
+        token: &OAuthToken,
+        server: &String,
+        name: &String,
+    ) -> Result<CharacterEquipment, String> {
+        match WowApi::character_equipment(token, server, name, &self.settings).await {
             Ok(resp) => Ok(resp),
             Err(msg) => Err(msg.to_string()),
         }

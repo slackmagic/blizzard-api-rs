@@ -74,9 +74,12 @@ impl WowApi {
         );
 
         let parsed_url = reqwest::Url::parse(&url)?;
-        let resp = reqwest::get(parsed_url.as_ref()).await?.json().await?;
+        let resp = reqwest::get(parsed_url.as_ref()).await?;
+        println!("{:?}", resp);
+        let resp_json = resp.json().await?;
+        println!("{:?}", resp_json);
 
-        Ok(resp)
+        Ok(resp_json)
     }
 
     pub async fn character_equipment(

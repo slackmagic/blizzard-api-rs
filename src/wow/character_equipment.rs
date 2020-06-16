@@ -53,7 +53,7 @@ pub struct Binding {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ItemClass {
-    id: usize,
+    id: u64,
     name: String,
 }
 

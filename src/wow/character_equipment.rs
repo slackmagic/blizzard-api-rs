@@ -8,19 +8,20 @@ pub struct EquippedItem {
     pub item: Item,
     pub slot: Slot,
     pub quantity: usize,
-    pub context: usize,
-    pub bonus_list: Vec<i32>,
+    pub context: Option<usize>,
+    pub bonus_list: Option<Vec<i32>>,
     pub quality: Quality,
     pub name: String,
     pub item_class: ItemClass,
     pub item_subclass: ItemClass,
     pub inventory_type: InventoryType,
     pub binding: Binding,
-    pub armor: Armor,
-    pub stats: Vec<ItemStatistic>,
+    pub armor: Option<Armor>,
+    pub stats: Option<Vec<ItemStatistic>>,
     pub level: Level,
-    pub transmog: Transmogrification,
-    pub durability: Durability,
+    pub transmog: Option<Transmogrification>,
+    pub durability: Option<Durability>,
+   
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -91,7 +92,7 @@ pub struct Color {
     r: usize,
     g: usize,
     b: usize,
-    a: usize,
+    a: f32,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -106,7 +107,7 @@ pub struct ItemStatistic {
     #[serde(alias = "type")]
     type_: StatisticType,
     value: i32,
-    is_negated: bool,
+    is_negated: Option<bool>,
     display: Display,
 }
 

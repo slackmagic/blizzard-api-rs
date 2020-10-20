@@ -6,5 +6,5 @@ pub struct CharacterMedia {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Media {
     key: String,
-    url: String,
+    value: String,
 }

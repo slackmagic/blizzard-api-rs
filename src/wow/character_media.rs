@@ -1,6 +1,10 @@
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CharacterMedia {
-    avatar_url: String,
-    bust_url: String,
-    render_url: String,
+    assets: Vec<Media>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Media {
+    key: String,
+    url: String,
 }

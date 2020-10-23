@@ -1,4 +1,4 @@
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct OAuthToken {
     pub access_token: String,
     pub token_type: String,

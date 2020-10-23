@@ -13,7 +13,7 @@ use crate::wow::character_profile::CharacterProfile;
 use crate::wow::character_statistics::CharacterStatistics;
 use crate::wow::WowApi;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Settings {
     region: String,
     namespace: String,
@@ -30,7 +30,7 @@ impl Settings {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct BlizzardApiRS {
     settings: Settings,
 }

@@ -7,7 +7,7 @@ pub struct CharacterProfile {
     active_spec: ActiveSpec,
     race: Race,
     realm: Realm,
-    guild: Guild,
+    guild: Option<Guild>,
     active_title: Title,
     level: u64,
     experience: u64,

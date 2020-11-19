@@ -1,9 +1,9 @@
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CharacterEquipment {
     pub equipped_items: Vec<EquippedItem>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct EquippedItem {
     pub item: Item,
     pub slot: Slot,
@@ -23,70 +23,70 @@ pub struct EquippedItem {
     pub durability: Option<Durability>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Slot {
     #[serde(alias = "type")]
     type_: String,
     name: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct InventoryType {
     #[serde(alias = "type")]
     type_: String,
     name: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Quality {
     #[serde(alias = "type")]
     type_: String,
     name: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Binding {
     #[serde(alias = "type")]
     type_: String,
     name: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ItemClass {
     id: u64,
     name: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Level {
     value: i32,
     display_string: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Durability {
     value: i32,
     display_string: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Armor {
     value: i32,
     display: Display,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Item {
     id: i32,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Display {
     display_string: String,
     color: Color,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Color {
     r: usize,
     g: usize,
@@ -94,14 +94,14 @@ pub struct Color {
     a: f32,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct StatisticType {
     #[serde(alias = "type")]
     type_: String,
     name: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ItemStatistic {
     #[serde(alias = "type")]
     type_: StatisticType,
@@ -110,12 +110,12 @@ pub struct ItemStatistic {
     display: Display,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Transmogrification {
     item: TransmogrificationItem,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct TransmogrificationItem {
     id: i32,
     name: String,

@@ -1,6 +1,6 @@
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CharacterMedia {
-    assets: Option<Vec<Media>>,
+    pub assets: Option<Vec<Media>>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

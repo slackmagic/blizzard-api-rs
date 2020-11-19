@@ -21,7 +21,6 @@ pub struct EquippedItem {
     pub level: Level,
     pub transmog: Option<Transmogrification>,
     pub durability: Option<Durability>,
-   
 }
 
 #[derive(Debug, Serialize, Deserialize)]

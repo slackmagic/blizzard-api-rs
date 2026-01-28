@@ -19,10 +19,13 @@ impl BattleNetApi {
             endpoint.to_owned()
         );
 
+        let form = reqwest::multipart::Form::new()
+            .text("grant_type", "client_credentials");
+
         let token: OAuthToken = Client::new()
             .post(&url)
             .basic_auth(client, Some(secret))
-            .form(&[("grant_type", "client_credentials")])
+            .multipart(form)
             .send()
             .await?
             .json()

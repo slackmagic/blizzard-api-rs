@@ -40,7 +40,7 @@ impl BlizzardApiRS {
     }
 
     pub async fn get_token(
-        &mut self,
+        &self,
         client: &String,
         secret: &String,
     ) -> Result<OAuthToken, String> {

@@ -1,15 +1,72 @@
 use serde::{Deserialize, Serialize};
-use crate::wow::commons::*;
-use super::character::CharacterRef;
+use crate::wow::retail::CharacterRef;
+//
+// -------------------- Commun --------------------
+//
 
-/// Référence à un item
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Key {
+    pub href: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct NamedType {
+    #[serde(rename = "type")]
+    pub type_: String,
+    pub name: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct NamedResource {
+    pub key: Key,
+    pub name: String,
+    pub id: u64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Color {
+    pub r: u8,
+    pub g: u8,
+    pub b: u8,
+    pub a: f32,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Display {
+    pub display_string: String,
+    pub color: Option<Color>,
+}
+
+//
+// -------------------- Liens --------------------
+//
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Links {
+    #[serde(rename = "self")]
+    pub self_: Key,
+}
+
+//
+// -------------------- Item --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ItemRef {
     pub key: Key,
     pub id: u64,
 }
 
-/// Stat d'item
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Media {
+    pub key: Key,
+    pub id: u64,
+}
+
+//
+// -------------------- Stats --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ItemStat {
     #[serde(rename = "type")]
@@ -25,28 +82,32 @@ pub struct ItemStat {
     pub display: Display,
 }
 
-/// Armure
+//
+// -------------------- Armor / Durability --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Armor {
     pub value: u64,
     pub display: Display,
 }
 
-/// Durabilité
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Durability {
     pub value: u64,
     pub display_string: String,
 }
 
-/// Prix de vente
+//
+// -------------------- Sell price --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SellPrice {
     pub value: u64,
     pub display_strings: PriceDisplay,
 }
 
-/// Affichage du prix
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PriceDisplay {
     pub header: String,
@@ -55,7 +116,10 @@ pub struct PriceDisplay {
     pub copper: String,
 }
 
-/// Prérequis d'équipement
+//
+// -------------------- Requirements --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Requirements {
     pub level: Option<LevelRequirement>,
@@ -63,21 +127,22 @@ pub struct Requirements {
     pub display_string: Option<String>,
 }
 
-/// Prérequis de niveau
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LevelRequirement {
     pub value: u64,
     pub display_string: String,
 }
 
-/// Classes jouables
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PlayableClasses {
     pub links: Vec<NamedResource>,
     pub display_string: String,
 }
 
-/// Socket d'item
+//
+// -------------------- Sockets --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Socket {
     pub socket_type: NamedType,
@@ -95,14 +160,20 @@ pub struct Socket {
     pub media: Option<Media>,
 }
 
-/// Sort d'item
+//
+// -------------------- Spells --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ItemSpell {
     pub spell: NamedResource,
     pub description: String,
 }
 
-/// Transmog
+//
+// -------------------- Transmog --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Transmog {
     pub item: NamedResource,
@@ -110,7 +181,10 @@ pub struct Transmog {
     pub item_modified_appearance_id: u64,
 }
 
-/// Set d'items
+//
+// -------------------- Item Set --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ItemSet {
     pub item_set: NamedResource,
@@ -119,14 +193,12 @@ pub struct ItemSet {
     pub display_string: String,
 }
 
-/// Item de set
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SetItem {
     pub item: NamedResource,
     pub is_equipped: bool,
 }
 
-/// Effet de set
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SetEffect {
     pub display_string: String,
@@ -134,14 +206,20 @@ pub struct SetEffect {
     pub is_active: bool,
 }
 
-/// Niveau d'item
+//
+// -------------------- Item Level --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ItemLevel {
     pub value: u64,
     pub display_string: String,
 }
 
-/// Item équipé
+//
+// -------------------- Equipped Item --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct EquippedItem {
     pub item: ItemRef,
@@ -207,7 +285,10 @@ pub struct EquippedItem {
     pub name_description: Option<Display>,
 }
 
-/// Équipement de personnage
+//
+// -------------------- Root --------------------
+//
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CharacterEquipment {
     pub _links: Links,

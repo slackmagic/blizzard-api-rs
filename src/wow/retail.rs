@@ -24,7 +24,7 @@ impl WowRetailApiWrapper {
         settings: &Settings,
     ) -> Result<CharacterProfile, Box<dyn std::error::Error>> {
         let url = format!(
-            "{}/profile/retail/character/{}/{}?namespace={}&locale={}",
+            "{}/profile/wow/character/{}/{}?namespace={}&locale={}",
             WowRetailApiWrapper::get_base_server_url(&settings.region),
             server,
             name,
@@ -50,7 +50,7 @@ impl WowRetailApiWrapper {
         settings: &Settings,
     ) -> Result<CharacterMedia, Box<dyn std::error::Error>> {
         let url = format!(
-            "{}/profile/retail/character/{}/{}/character-media?namespace={}&locale={}",
+            "{}/profile/wow/character/{}/{}/character-media?namespace={}&locale={}",
             WowRetailApiWrapper::get_base_server_url(&settings.region),
             server,
             name,
@@ -78,7 +78,7 @@ impl WowRetailApiWrapper {
         settings: &Settings,
     ) -> Result<CharacterStatistics, Box<dyn std::error::Error>> {
         let url = format!(
-            "{}/profile/retail/character/{}/{}/statistics?namespace={}&locale={}",
+            "{}/profile/wow/character/{}/{}/statistics?namespace={}&locale={}",
             WowRetailApiWrapper::get_base_server_url(&settings.region),
             server,
             name,
@@ -106,13 +106,12 @@ impl WowRetailApiWrapper {
         settings: &Settings,
     ) -> Result<CharacterEquipment, Box<dyn std::error::Error>> {
         let url = format!(
-            "{}/profile/retail/character/{}/{}/equipment?namespace={}&locale={}&access_token={}",
+            "{}/profile/wow/character/{}/{}/equipment?namespace={}&locale={}",
             WowRetailApiWrapper::get_base_server_url(&settings.region),
             server,
             name,
             settings.namespace,
-            settings.locale,
-            token.access_token
+            settings.locale
         );
 
         let parsed_url = reqwest::Url::parse(&url)?;

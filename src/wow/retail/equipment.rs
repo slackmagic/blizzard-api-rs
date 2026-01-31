@@ -196,14 +196,18 @@ pub struct ItemSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SetItem {
     pub item: NamedResource,
-    pub is_equipped: bool,
+
+    #[serde(default)]
+    pub is_equipped: Option<bool>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SetEffect {
     pub display_string: String,
     pub required_count: u64,
-    pub is_active: bool,
+
+    #[serde(default)]
+    pub is_active: Option<bool>,
 }
 
 //

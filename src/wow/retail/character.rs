@@ -115,6 +115,7 @@ pub struct CharacterProfile {
 
     pub is_remix: bool,
 
+    #[serde(default)]
     pub houses: Vec<HrefOnly>,
 
     pub name_search: String,

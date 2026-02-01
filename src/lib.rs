@@ -8,7 +8,7 @@ pub mod battle_net;
 
 use crate::battle_net::oauth_token::OAuthToken;
 use crate::battle_net::BattleNetApi;
-use crate::wow::retail::{CharacterEquipment, CharacterMedia, CharacterProfile, CharacterStatistics, WowRetailApiWrapper};
+use crate::wow::retail::{CharacterEquipment, CharacterMedia, CharacterProfile, CharacterReputations, CharacterStatistics, WowRetailApiWrapper};
 
 #[derive(Debug, Clone)]
 pub struct Settings {
@@ -93,6 +93,18 @@ impl BlizzardApiRS {
         name: &String,
     ) -> Result<CharacterEquipment, String> {
         match WowRetailApiWrapper::character_equipment(token, server, name, &self.settings).await {
+            Ok(resp) => Ok(resp),
+            Err(msg) => Err(msg.to_string()),
+        }
+    }
+
+    pub async fn get_wow_character_reputations(
+        &self,
+        token: &OAuthToken,
+        server: &String,
+        name: &String,
+    ) -> Result<CharacterReputations, String> {
+        match WowRetailApiWrapper::character_reputations(token, server, name, &self.settings).await {
             Ok(resp) => Ok(resp),
             Err(msg) => Err(msg.to_string()),
         }

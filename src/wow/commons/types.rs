@@ -1,13 +1,13 @@
 use serde::{Deserialize, Serialize};
 
 /// Lien générique Blizzard
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BlizzardLink {
     pub href: String,
 }
 
 /// Clé générique Blizzard
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BlizzardKey {
     pub href: String,
 }
@@ -29,20 +29,20 @@ pub struct NamedType {
 }
 
 /// Structure de liens (avec self)
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Links {
     #[serde(rename = "self")]
     pub self_: BlizzardLink,
 }
 
 /// Référence href simple
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct HrefOnly {
     pub href: String,
 }
 
 /// Clé simple
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Key {
     pub href: String,
 }

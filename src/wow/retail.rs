@@ -6,11 +6,13 @@ use reqwest::Client;
 pub mod character;
 pub mod statistics;
 pub mod equipment;
+pub mod reputations;
 
 // Re-export des types principaux
 pub use character::*;
 pub use statistics::*;
 pub use equipment::*;
+pub use reputations::*;
 
 #[derive(Debug)]
 pub struct WowRetailApiWrapper {}
@@ -145,6 +147,43 @@ impl WowRetailApiWrapper {
 
         serde_json::from_str(&text).map_err(|e| {
             eprintln!("Failed to parse character_equipment for {}: {}", name, e);
+            eprintln!("Response body: {}", text);
+            Box::new(e) as Box<dyn std::error::Error>
+        })
+    }
+
+    pub async fn character_reputations(
+        token: &OAuthToken,
+        server: &String,
+        name: &String,
+        settings: &Settings,
+    ) -> Result<CharacterReputations, Box<dyn std::error::Error>> {
+        let url = format!(
+            "{}/profile/wow/character/{}/{}/reputations?namespace={}&locale={}",
+            WowRetailApiWrapper::get_base_server_url(&settings.region),
+            server,
+            name,
+            settings.namespace,
+            settings.locale
+        );
+
+        let parsed_url = reqwest::Url::parse(&url)?;
+
+        let response = Client::new()
+            .get(parsed_url)
+            .bearer_auth(token.access_token.clone())
+            .send()
+            .await?;
+
+        let status = response.status();
+        let text = response.text().await?;
+
+        if !status.is_success() {
+            return Err(format!("API error {}: {}", status, text).into());
+        }
+
+        serde_json::from_str(&text).map_err(|e| {
+            eprintln!("Failed to parse character_reputations for {}: {}", name, e);
             eprintln!("Response body: {}", text);
             Box::new(e) as Box<dyn std::error::Error>
         })
